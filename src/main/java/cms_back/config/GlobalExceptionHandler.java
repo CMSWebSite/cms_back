@@ -56,4 +56,11 @@ public class GlobalExceptionHandler {
         body.put("code", code);
         return body;
     }
+
+    @ExceptionHandler(cms_back.service.exception.InvalidCredentialsException.class)
+    public ResponseEntity<?> handleInvalidCredentials(cms_back.service.exception.InvalidCredentialsException e) {
+        Map<String, Object> body = baseBody(HttpStatus.UNAUTHORIZED, "INVALID_CREDENTIALS");
+        body.put("message", e.getMessage());
+        return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(body);
+}
 }

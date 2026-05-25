@@ -53,5 +53,8 @@ public class User {
     public UserRole getRole() { return role; }
     public LocalDateTime getCreatedAt() { return createdAt; }
 
-    // (추후 관리자 기능에서 role 변경 등 필요하면 setter 대신 명시적 메서드 추천)
+    // 관리자가 사용자의 권한을 변경할 때 사용한다.
+    public void changeRole(UserRole role) {
+        this.role = role;
+    }
 }

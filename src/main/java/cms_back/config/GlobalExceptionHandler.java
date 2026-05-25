@@ -7,7 +7,9 @@ import org.springframework.validation.FieldError;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.*;
 
+import cms_back.service.exception.BusinessRuleException;
 import cms_back.service.exception.EmailAlreadyExistsException;
+import cms_back.service.exception.NotFoundException;
 import cms_back.service.exception.PasswordMismatchException;
 
 import java.time.LocalDateTime;
@@ -38,6 +40,20 @@ public class GlobalExceptionHandler {
     @ExceptionHandler(PasswordMismatchException.class)
     public ResponseEntity<?> handlePasswordMismatch(PasswordMismatchException e) {
         Map<String, Object> body = baseBody(HttpStatus.BAD_REQUEST, "PASSWORD_MISMATCH");
+        body.put("message", e.getMessage());
+        return ResponseEntity.badRequest().body(body);
+    }
+
+    @ExceptionHandler(NotFoundException.class)
+    public ResponseEntity<?> handleNotFound(NotFoundException e) {
+        Map<String, Object> body = baseBody(HttpStatus.NOT_FOUND, "NOT_FOUND");
+        body.put("message", e.getMessage());
+        return ResponseEntity.status(HttpStatus.NOT_FOUND).body(body);
+    }
+
+    @ExceptionHandler(BusinessRuleException.class)
+    public ResponseEntity<?> handleBusinessRule(BusinessRuleException e) {
+        Map<String, Object> body = baseBody(HttpStatus.BAD_REQUEST, e.getCode());
         body.put("message", e.getMessage());
         return ResponseEntity.badRequest().body(body);
     }

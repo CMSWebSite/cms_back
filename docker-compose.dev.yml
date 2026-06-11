@@ -1,0 +1,30 @@
+# 로컬 개발용 MySQL 8.0 (운영 RDS와 동일 메이저 버전).
+# 사용:
+#   docker compose -f docker-compose.dev.yml up -d
+#   docker compose -f docker-compose.dev.yml down        # 컨테이너 중지(데이터 유지)
+#   docker compose -f docker-compose.dev.yml down -v      # 데이터까지 삭제
+#
+# 여기 값은 누가 봐도 더미인 로컬 전용 값이다. 운영 RDS 정보는 절대 넣지 말 것.
+# application.properties(dev 프로파일)가 이 설정과 맞춰져 있다.
+services:
+  mysql:
+    image: mysql:8.0
+    container_name: cmsweb-dev-mysql
+    command:
+      - --character-set-server=utf8mb4
+      - --collation-server=utf8mb4_unicode_ci
+    environment:
+      MYSQL_ROOT_PASSWORD: localdev
+      MYSQL_DATABASE: cms_db
+    ports:
+      - "3306:3306"
+    volumes:
+      - cmsweb_dev_mysql:/var/lib/mysql
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-uroot", "-plocaldev"]
+      interval: 5s
+      timeout: 3s
+      retries: 20
+
+volumes:
+  cmsweb_dev_mysql:

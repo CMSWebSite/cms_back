@@ -35,3 +35,10 @@ out/
 
 ### VS Code ###
 .vscode/
+
+### 로컬 시크릿/오버라이드 (커밋 금지) ###
+# 개인 환경의 DB 비밀번호·JWT 시크릿 등은 여기에. 템플릿은 *.example 참고.
+application-local.properties
+application-local.yml
+*.env
+!*.env.example

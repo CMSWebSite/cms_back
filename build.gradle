@@ -30,6 +30,11 @@ dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-thymeleaf'
 	implementation 'org.springframework.boot:spring-boot-starter-web'
 	implementation 'org.springframework.boot:spring-boot-starter-websocket'
+	implementation 'org.springframework.boot:spring-boot-starter-actuator'
+
+	// DB 마이그레이션 (Flyway). 버전은 Spring Boot BOM 관리. MySQL은 전용 모듈 필요.
+	implementation 'org.flywaydb:flyway-core'
+	implementation 'org.flywaydb:flyway-mysql'
 	// spring-session-jdbc 제거: 이 앱은 JWT + STATELESS 세션 정책이라 서버 세션 저장소가 불필요하며,
 	// 존재 시 SPRING_SESSION 테이블을 찾는 정리 스케줄러가 주기적으로 실패한다.
 	implementation 'org.thymeleaf.extras:thymeleaf-extras-springsecurity6'
@@ -52,7 +57,13 @@ dependencies {
 
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
 	testImplementation 'org.springframework.security:spring-security-test'
-	
+
+	// 통합 테스트는 실제 MySQL 8.0 컨테이너로 Flyway V1 + ddl-auto=validate 를 검증한다.
+	// 버전은 Spring Boot BOM(testcontainers BOM) 관리. 테스트 실행 시 Docker 필요.
+	testImplementation 'org.springframework.boot:spring-boot-testcontainers'
+	testImplementation 'org.testcontainers:junit-jupiter'
+	testImplementation 'org.testcontainers:mysql'
+
 	testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
 }
 

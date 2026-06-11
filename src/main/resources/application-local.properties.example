@@ -1,0 +1,18 @@
+# application-local.properties 템플릿.
+#
+# 개인 로컬 환경값으로 dev 기본값을 덮어쓰고 싶을 때만 사용한다.
+#   1) 이 파일을 application-local.properties 로 복사 (그 파일은 .gitignore 대상이라 커밋 안 됨)
+#   2) 아래 값 수정
+#   3) ./gradlew bootRun --args='--spring.profiles.active=local' 로 실행
+#
+# 대부분은 docker-compose.dev.yml 기본값으로 충분하므로 이 파일이 필요 없다.
+
+# 로컬 DB 접속을 바꾸려면:
+#spring.datasource.username=root
+#spring.datasource.password=localdev
+
+# 로컬에서 본인 계정을 ADMIN으로 승격하려면 가입한 이메일 입력:
+#app.admin.bootstrap-email=me@example.com
+
+# 로컬 JWT 시크릿을 따로 쓰려면(32바이트 이상):
+#app.jwt.secret=local-dev-dummy-secret-not-for-production-use-change-me

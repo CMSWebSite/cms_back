@@ -3,7 +3,7 @@
 # 개인 로컬 환경값으로 dev 기본값을 덮어쓰고 싶을 때만 사용한다.
 #   1) 이 파일을 application-local.properties 로 복사 (그 파일은 .gitignore 대상이라 커밋 안 됨)
 #   2) 아래 값 수정
-#   3) ./gradlew bootRun --args='--spring.profiles.active=local' 로 실행
+#   3) ./gradlew bootRun  (application.properties 의 spring.config.import 가 자동 로드 — 플래그 불필요)
 #
 # 대부분은 docker-compose.dev.yml 기본값으로 충분하므로 이 파일이 필요 없다.
 

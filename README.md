@@ -30,12 +30,14 @@ JPA는 `ddl-auto=validate`로 스키마-엔티티 일치만 검증한다.
 
 ### 3. 개인 환경값으로 덮어쓰기 (선택)
 
-개인 DB 비밀번호나 관리자 부트스트랩 이메일이 필요하면:
+기존에 쓰던 개인 네이티브 MySQL을 쓰거나, DB 비밀번호·관리자 이메일을 개인값으로 바꾸려면
+`application-local.properties` 한 파일만 만들면 된다. `application.properties` 가 이 파일을
+`spring.config.import=optional:` 로 자동 로드하므로 **별도 프로필 플래그 없이** 그대로 적용된다.
 
 ```bash
 cp src/main/resources/application-local.properties.example src/main/resources/application-local.properties
-# 값 수정 후
-./gradlew bootRun --args='--spring.profiles.active=local'
+# 예: spring.datasource.password=<본인 로컬 DB 비번> 한 줄만 넣어도 된다
+./gradlew bootRun
 ```
 
 `application-local.properties`는 `.gitignore` 대상이라 커밋되지 않는다.

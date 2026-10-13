@@ -45,7 +45,7 @@ public class AdminOtherAchievementService {
     public OtherAchievementDtos.Detail create(OtherAchievementDtos.UpsertRequest req) {
         OtherAchievement saved = repository.save(OtherAchievement.create(
                 req.title(), req.type(), req.description(),
-                req.achievedOn(),
+                req.authors(), req.achievedOn(),
                 req.attachmentName(), req.attachmentUrl(), req.attachmentSize(),
                 req.visible(),
                 adminContext.currentActor()
@@ -57,7 +57,7 @@ public class AdminOtherAchievementService {
     public OtherAchievementDtos.Detail update(Long id, OtherAchievementDtos.UpsertRequest req) {
         OtherAchievement o = findOrThrow(id);
         o.update(req.title(), req.type(), req.description(),
-                req.achievedOn(),
+                req.authors(), req.achievedOn(),
                 req.attachmentName(), req.attachmentUrl(), req.attachmentSize(),
                 req.visible(),
                 adminContext.currentActor());

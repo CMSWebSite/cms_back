@@ -70,7 +70,7 @@ public class SiteSettingSeedRunner implements CommandLineRunner {
 
         // Homepage Hero
         m.put("homepage.hero.image",
-                new SeedEntry("", "url", "Homepage Hero GIF/이미지 URL"));
+                new SeedEntry("", "url", "Homepage Hero 영상(mp4/webm) 또는 이미지 URL"));
         m.put("homepage.hero.subtitle",
                 new SeedEntry(
                         "Our lab focuses on engineering intelligence,\nmoving beyond isolated models toward real-world systems.",
@@ -82,28 +82,44 @@ public class SiteSettingSeedRunner implements CommandLineRunner {
                         "text", "Research 카드 1 제목"));
         m.put("homepage.research.card1.image",
                 new SeedEntry("", "url", "Research 카드 1 이미지"));
+        m.put("homepage.research.card1.description",
+                new SeedEntry("", "text", "Research 카드 1 설명 (Research topics 페이지)"));
         m.put("homepage.research.card2.title",
                 new SeedEntry("Development of Standardized\nDocumentation",
                         "text", "Research 카드 2 제목"));
         m.put("homepage.research.card2.image",
                 new SeedEntry("", "url", "Research 카드 2 이미지"));
+        m.put("homepage.research.card2.description",
+                new SeedEntry("", "text", "Research 카드 2 설명 (Research topics 페이지)"));
         m.put("homepage.research.card3.title",
                 new SeedEntry("Smart Ship and\nMarine Cybersecurity",
                         "text", "Research 카드 3 제목"));
         m.put("homepage.research.card3.image",
                 new SeedEntry("", "url", "Research 카드 3 이미지"));
+        m.put("homepage.research.card3.description",
+                new SeedEntry("", "text", "Research 카드 3 설명 (Research topics 페이지)"));
 
-        // Footer
-        m.put("footer.phone",
-                new SeedEntry("+82 010-XXXX-XXXX", "text", "Footer 전화번호"));
-        m.put("footer.fax",
-                new SeedEntry("+82 010-XXXX-XXXX", "text", "Footer FAX"));
+        // Research topics 페이지
+        m.put("research.intro",
+                new SeedEntry("사이버마린 시스템 연구실의 주요 연구 분야를 소개합니다.",
+                        "text", "Research topics 상단 소개 문단 (빈 줄로 문단 구분)"));
+
+        // Footer (빈 값인 항목은 푸터에 표시되지 않는다)
+        m.put("footer.affiliation",
+                new SeedEntry("Cybermarine System Lab, Korea Maritime & Ocean University",
+                        "text", "Footer 연구실/소속 표기"));
         m.put("footer.address",
                 new SeedEntry("(49112) 부산광역시 영도구 태종로 727(동삼동) 한국해양대학교 공과대학 2호관 638호",
                         "text", "Footer 주소"));
+        m.put("footer.email",
+                new SeedEntry("", "email", "Footer 대표 이메일 (선택)"));
+        m.put("footer.phone",
+                new SeedEntry("", "text", "Footer 전화번호 (선택)"));
+        m.put("footer.fax",
+                new SeedEntry("", "text", "Footer FAX (선택)"));
         m.put("footer.copyright",
-                new SeedEntry("Copyright © 2026 Cybermarine System Lab. All Rights Reserved.",
-                        "text", "Footer 저작권 문구"));
+                new SeedEntry("© {year} Cybermarine System Lab. All rights reserved.",
+                        "text", "Footer 저작권 문구 ({year}는 현재 연도로 자동 치환)"));
 
         // Site / SEO
         m.put("site.logoUrl",

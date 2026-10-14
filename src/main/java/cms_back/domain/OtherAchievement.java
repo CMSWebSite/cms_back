@@ -29,6 +29,10 @@ public class OtherAchievement {
     @Column(columnDefinition = "TEXT")
     private String description;
 
+    /** 저자 — 자유 텍스트(쉼표 구분). 선택 항목 */
+    @Column(length = 1000)
+    private String authors;
+
     @Column(nullable = false)
     private LocalDate achievedOn;
 
@@ -60,7 +64,7 @@ public class OtherAchievement {
     protected OtherAchievement() {}
 
     public static OtherAchievement create(String title, String type, String description,
-                                          LocalDate achievedOn,
+                                          String authors, LocalDate achievedOn,
                                           String attachmentName, String attachmentUrl,
                                           Long attachmentSize,
                                           boolean visible, String actor) {
@@ -68,6 +72,7 @@ public class OtherAchievement {
         o.title = title;
         o.type = type;
         o.description = description;
+        o.authors = authors;
         o.achievedOn = achievedOn;
         o.attachmentName = attachmentName;
         o.attachmentUrl = attachmentUrl;
@@ -81,13 +86,14 @@ public class OtherAchievement {
     }
 
     public void update(String title, String type, String description,
-                       LocalDate achievedOn,
+                       String authors, LocalDate achievedOn,
                        String attachmentName, String attachmentUrl,
                        Long attachmentSize,
                        boolean visible, String actor) {
         this.title = title;
         this.type = type;
         this.description = description;
+        this.authors = authors;
         this.achievedOn = achievedOn;
         this.attachmentName = attachmentName;
         this.attachmentUrl = attachmentUrl;
@@ -101,6 +107,7 @@ public class OtherAchievement {
     public String getTitle() { return title; }
     public String getType() { return type; }
     public String getDescription() { return description; }
+    public String getAuthors() { return authors; }
     public LocalDate getAchievedOn() { return achievedOn; }
     public String getAttachmentName() { return attachmentName; }
     public String getAttachmentUrl() { return attachmentUrl; }

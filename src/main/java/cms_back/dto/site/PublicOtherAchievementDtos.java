@@ -12,13 +12,14 @@ public final class PublicOtherAchievementDtos {
             Long id,
             String title,
             String type,
+            String authors,
             LocalDate achievedOn,
             String attachmentUrl
     ) {
         public static Summary from(OtherAchievement o) {
             return new Summary(
                     o.getId(), o.getTitle(), o.getType(),
-                    o.getAchievedOn(), o.getAttachmentUrl()
+                    o.getAuthors(), o.getAchievedOn(), o.getAttachmentUrl()
             );
         }
     }
@@ -28,6 +29,7 @@ public final class PublicOtherAchievementDtos {
             String title,
             String type,
             String description,
+            String authors,
             LocalDate achievedOn,
             String attachmentName,
             String attachmentUrl,
@@ -36,7 +38,7 @@ public final class PublicOtherAchievementDtos {
         public static Detail from(OtherAchievement o) {
             return new Detail(
                     o.getId(), o.getTitle(), o.getType(), o.getDescription(),
-                    o.getAchievedOn(),
+                    o.getAuthors(), o.getAchievedOn(),
                     o.getAttachmentName(), o.getAttachmentUrl(), o.getAttachmentSize()
             );
         }

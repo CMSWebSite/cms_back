@@ -34,6 +34,7 @@ public final class OtherAchievementDtos {
             String title,
             String type,
             String description,
+            String authors,
             LocalDate achievedOn,
             String attachmentName,
             String attachmentUrl,
@@ -47,7 +48,7 @@ public final class OtherAchievementDtos {
         public static Detail from(OtherAchievement o) {
             return new Detail(
                     o.getId(), o.getTitle(), o.getType(), o.getDescription(),
-                    o.getAchievedOn(),
+                    o.getAuthors(), o.getAchievedOn(),
                     o.getAttachmentName(), o.getAttachmentUrl(), o.getAttachmentSize(),
                     o.isVisible(),
                     o.getCreatedAt(), o.getUpdatedAt(), o.getCreatedBy(), o.getUpdatedBy()
@@ -65,6 +66,9 @@ public final class OtherAchievementDtos {
             String type,
 
             String description,
+
+            @Size(max = 1000)
+            String authors,
 
             @NotNull(message = "날짜는 필수입니다.")
             LocalDate achievedOn,
